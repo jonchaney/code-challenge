@@ -3,9 +3,9 @@ var webpack = require("webpack");
 
 module.exports = {
   context: __dirname,
-  entry: './lib/javascripts/index.js',
+  entry: './frontend/index.jsx',
   output: {
-    path: path.resolve(__dirname, 'lib'),
+    path: path.resolve(__dirname, 'frontend'),
     filename: './bundle.js'
   },
   resolve: {
@@ -14,11 +14,12 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js?$/,
+        test: /\.jsx?$/,
         exclude: /(node_modules)/,
         loader: 'babel-loader',
         query: {
-          presets: ['es2015']
+          presets: ['es2015', 'react'],
+          
         }
       }
     ]
