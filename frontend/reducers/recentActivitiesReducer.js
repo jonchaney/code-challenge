@@ -5,24 +5,22 @@ import {
 } from '../actions/user_actions';
 
 const defaultState = {
-  recentActivities: {
-    "nodeType": 17,
-    "nodeTypeString": "Comment",
-    "nodeid": 12324,
-    "title": "Re: What is for dinner?",
-    "postDate": 1505832130561,
-    "author": "Tony Handy",
-    "authorId": 1,
-    "authorAvatar": "images/avatar1465389809397.png"
-  }
+    "nodeType": null,
+    "nodeTypeString": null,
+    "nodeid": null,
+    "title": null,
+    "postDate": null,
+    "author": null,
+    "authorId": null,
+    "authorAvatar": null
 };
 
 const AlbumsReducer = (state = defaultState, action) => {
   Object.freeze(state);
-  let newState = merge({}, state);
+  let newState = action.recentActivities;
   switch (action.type) {
     case RECEIVE_RECENT_ACTIVITIES:
-      return merge({}, state, { recentActivities: action.recentActivities });
+      return newState.data.recentActivities;
     default:
       return state;
   }

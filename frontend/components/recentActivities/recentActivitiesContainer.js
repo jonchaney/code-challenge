@@ -1,13 +1,15 @@
 import { connect } from 'react-redux';
 import RecentActivities from './recentActivities.jsx';
+
+import { fetchRecentActivities } from "../../actions/user_actions.js";
 import {recentActivities} from '../../util/user_util.js';
 
-const mapStateToProps = () => ({
-  recentActivities: recentActivities.data.recentActivities
+const mapStateToProps = ( state ) => ({
+  recentActivities: state.recentActivities
 });
 
 const mapDispatchToProps = dispatch => ({
-//  fetchActivities: () => fetchActivities
+  fetchRecentActivities: () => dispatch(fetchRecentActivities())
 });
 
 export default connect(

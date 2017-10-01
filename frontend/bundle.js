@@ -3139,30 +3139,7 @@ module.exports = identity;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchRecentActivities = exports.receiveRecentActivity = exports.RECEIVE_RECENT_ACTIVITIES = undefined;
-
-var _user_util = __webpack_require__(181);
-
-var APIUtil = _interopRequireWildcard(_user_util);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-var RECEIVE_RECENT_ACTIVITIES = exports.RECEIVE_RECENT_ACTIVITIES = "RECEIVE_RECENT_ACTIVITIES";
-
-var receiveRecentActivity = exports.receiveRecentActivity = function receiveRecentActivity(recentActivities) {
-  return {
-    type: RECEIVE_RECENT_ACTIVITIES,
-    recentActivities: recentActivities
-  };
-};
-
-var fetchRecentActivities = exports.fetchRecentActivities = function fetchRecentActivities() {
-  return function (dispatch) {
-    return APIUtil.fetchRecentActivities().then(function (recentActivities) {
-      dispatch(receiveRecentActivity(recentActivities));
-    });
-  };
-};
+var recentActivities = exports.recentActivities = __webpack_require__(182);
 
 /***/ }),
 /* 65 */
@@ -4276,16 +4253,19 @@ var _store = __webpack_require__(95);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _root = __webpack_require__(183);
+var _root = __webpack_require__(221);
 
 var _root2 = _interopRequireDefault(_root);
 
-var _user_actions = __webpack_require__(64);
+var _user_actions = __webpack_require__(181);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 document.addEventListener('DOMContentLoaded', function () {
   var store = (0, _store2.default)();
+
+  window.fetchRecentActivities = _user_actions.fetchRecentActivities;
+  window.dispatch = store.dispatch;
 
   var root = document.getElementById('root');
   _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
@@ -25111,21 +25091,19 @@ var _merge = __webpack_require__(114);
 
 var _merge2 = _interopRequireDefault(_merge);
 
-var _user_actions = __webpack_require__(64);
+var _user_actions = __webpack_require__(181);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var defaultState = {
-  recentActivities: {
-    "nodeType": 17,
-    "nodeTypeString": "Comment",
-    "nodeid": 12324,
-    "title": "Re: What is for dinner?",
-    "postDate": 1505832130561,
-    "author": "Tony Handy",
-    "authorId": 1,
-    "authorAvatar": "images/avatar1465389809397.png"
-  }
+  "nodeType": null,
+  "nodeTypeString": null,
+  "nodeid": null,
+  "title": null,
+  "postDate": null,
+  "author": null,
+  "authorId": null,
+  "authorAvatar": null
 };
 
 var AlbumsReducer = function AlbumsReducer() {
@@ -25133,10 +25111,10 @@ var AlbumsReducer = function AlbumsReducer() {
   var action = arguments[1];
 
   Object.freeze(state);
-  var newState = (0, _merge2.default)({}, state);
+  var newState = action.recentActivities;
   switch (action.type) {
     case _user_actions.RECEIVE_RECENT_ACTIVITIES:
-      return (0, _merge2.default)({}, state, { recentActivities: action.recentActivities });
+      return newState.data.recentActivities;
     default:
       return state;
   }
@@ -27308,7 +27286,28 @@ module.exports = isIterateeCall;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var recentActivities = exports.recentActivities = __webpack_require__(182);
+exports.fetchRecentActivities = exports.receiveRecentActivity = exports.RECEIVE_RECENT_ACTIVITIES = undefined;
+
+var _user_util = __webpack_require__(64);
+
+var RECEIVE_RECENT_ACTIVITIES = exports.RECEIVE_RECENT_ACTIVITIES = "RECEIVE_RECENT_ACTIVITIES";
+
+// actions creators
+
+var receiveRecentActivity = exports.receiveRecentActivity = function receiveRecentActivity(recentActivities) {
+  return {
+    type: RECEIVE_RECENT_ACTIVITIES,
+    recentActivities: recentActivities
+  };
+};
+
+// thunk action creators
+
+var fetchRecentActivities = exports.fetchRecentActivities = function fetchRecentActivities() {
+  return function (dispatch) {
+    dispatch(receiveRecentActivity(_user_util.recentActivities));
+  };
+};
 
 /***/ }),
 /* 182 */
@@ -27317,46 +27316,7 @@ var recentActivities = exports.recentActivities = __webpack_require__(182);
 module.exports = {"data":{"recentActivities":[{"nodeType":17,"nodeTypeString":"Comment","nodeid":12324,"title":"Re: What is for dinner?","postDate":1505832130561,"author":"Tony Handy","authorId":1,"authorAvatar":"images/avatar1465389809397.png"},{"nodeType":2,"nodeTypeString":"Idea","nodeid":12319,"title":"What is the best place for happy hour?","postDate":1505631600000,"author":"Tony Handy","authorId":1,"authorAvatar":"images/avatar1465389809397.png"},{"nodeType":18,"nodeTypeString":"Reply","nodeid":12318,"title":"Re: What is for dinner?","postDate":1505631600000,"author":"Elmo Elmo","authorId":364,"authorAvatar":"images/avatar1461606369555.jpg"},{"nodeType":17,"nodeTypeString":"Comment","nodeid":12317,"title":"Re: What is for dinner?","postDate":1505631600000,"author":"Elmo Elmo","authorId":364,"authorAvatar":"images/avatar1461606369555.jpg"},{"nodeType":2,"nodeTypeString":"Idea","nodeid":12312,"title":"What is for dinner?","postDate":1505372400000,"author":"Cookie Monster","authorId":380,"authorAvatar":"images/no_avatar.gif"}]},"success":true}
 
 /***/ }),
-/* 183 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__(65);
-
-var _App = __webpack_require__(193);
-
-var _App2 = _interopRequireDefault(_App);
-
-var _reactRouterDom = __webpack_require__(71);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Root = function Root(_ref) {
-  var store = _ref.store;
-  return _react2.default.createElement(
-    _reactRedux.Provider,
-    { store: store },
-    _react2.default.createElement(
-      _reactRouterDom.HashRouter,
-      null,
-      _react2.default.createElement(_App2.default, null)
-    )
-  );
-};
-
-exports.default = Root;
-
-/***/ }),
+/* 183 */,
 /* 184 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -27943,39 +27903,7 @@ function verifySubselectors(mapStateToProps, mapDispatchToProps, mergeProps, dis
 }
 
 /***/ }),
-/* 193 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouterDom = __webpack_require__(71);
-
-var _recentActivitiesContainer = __webpack_require__(219);
-
-var _recentActivitiesContainer2 = _interopRequireDefault(_recentActivitiesContainer);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var App = function App() {
-  return _react2.default.createElement(
-    'div',
-    null,
-    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _recentActivitiesContainer2.default })
-  );
-};
-
-exports.default = App;
-
-/***/ }),
+/* 193 */,
 /* 194 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -30951,19 +30879,23 @@ var _recentActivities = __webpack_require__(220);
 
 var _recentActivities2 = _interopRequireDefault(_recentActivities);
 
-var _user_util = __webpack_require__(181);
+var _user_actions = __webpack_require__(181);
+
+var _user_util = __webpack_require__(64);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var mapStateToProps = function mapStateToProps() {
+var mapStateToProps = function mapStateToProps(state) {
   return {
-    recentActivities: _user_util.recentActivities.data.recentActivities
+    recentActivities: state.recentActivities
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    //  fetchActivities: () => fetchActivities
+    fetchRecentActivities: function fetchRecentActivities() {
+      return dispatch((0, _user_actions.fetchRecentActivities)());
+    }
   };
 };
 
@@ -31004,6 +30936,11 @@ var RecentActivities = function (_React$Component) {
   }
 
   _createClass(RecentActivities, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      this.props.fetchRecentActivities();
+    }
+  }, {
     key: "renderHeader",
     value: function renderHeader() {
       return _react2.default.createElement(
@@ -31012,7 +30949,7 @@ var RecentActivities = function (_React$Component) {
         _react2.default.createElement(
           "div",
           null,
-          _react2.default.createElement("i", { className: "fa fa-angle-left", "aria-hidden": "true" })
+          _react2.default.createElement("i", { className: "fa fa-chevron-left", "aria-hidden": "true" })
         ),
         _react2.default.createElement(
           "div",
@@ -31027,19 +30964,25 @@ var RecentActivities = function (_React$Component) {
       );
     }
   }, {
-    key: "renderActivties",
-    value: function renderActivties() {
-      return _react2.default.createElement(
-        "div",
-        null,
-        _react2.default.createElement(
-          "ul",
-          { className: "recent-activity" },
-          this.props.recentActivities.map(function (item, idx) {
-            return _react2.default.createElement(
-              "li",
-              { key: idx },
-              _react2.default.createElement("img", { className: "profile-photo", src: "./" + item.authorAvatar }),
+    key: "renderActivities",
+    value: function renderActivities() {
+      var _this2 = this;
+
+      var today = new Date(this.props.recentActivities[0].postDate);
+      var activites = this.props.recentActivities.map(function (item, idx) {
+        var phrase = _this2.selectPhrase(item.nodeTypeString);
+        var date = _this2.getTime(item.postDate, today);
+
+        return _react2.default.createElement(
+          "div",
+          { key: idx, className: "recent-activity" },
+          _react2.default.createElement(
+            "div",
+            { className: "list-item" },
+            _react2.default.createElement("img", { className: "profile-photo", src: "./" + item.authorAvatar }),
+            _react2.default.createElement(
+              "div",
+              null,
               _react2.default.createElement(
                 "p",
                 null,
@@ -31048,28 +30991,73 @@ var RecentActivities = function (_React$Component) {
               _react2.default.createElement(
                 "p",
                 null,
-                item.nodeTypeString
+                phrase
               ),
               _react2.default.createElement(
                 "p",
                 null,
-                item.postDate
+                item.title
+              ),
+              _react2.default.createElement(
+                "p",
+                null,
+                date
               )
-            );
-          })
-        )
+            )
+          )
+        );
+      });
+
+      return _react2.default.createElement(
+        "div",
+        null,
+        activites
       );
+    }
+  }, {
+    key: "selectPhrase",
+    value: function selectPhrase(nodeType) {
+      var phrase = void 0;
+      if (nodeType === "Comment") {
+        phrase = "commented on the idea";
+      } else if (nodeType === "Reply") {
+        phrase = "replied to a comment on the idea";
+      } else if (nodeType === "Idea") {
+        phrase = "posted an idea";
+      }
+      return phrase;
+    }
+  }, {
+    key: "getTime",
+    value: function getTime(postDate, today) {
+      var diff = today - postDate;
+      var date = new Date(diff);
+
+      if (diff === 0) {
+        console.log(today.getMinutes());
+        // console.log(.getMinutes());
+        return "hi";
+      }
+
+      return date.getDate() + " days ago";
     }
   }, {
     key: "render",
     value: function render() {
-      console.log(this.props.recentActivities);
-      return _react2.default.createElement(
-        "div",
-        null,
-        this.renderHeader(),
-        this.renderActivties()
-      );
+      if (this.props.recentActivities.author === null) {
+        return _react2.default.createElement(
+          "div",
+          null,
+          "loading..."
+        );
+      } else {
+        return _react2.default.createElement(
+          "div",
+          null,
+          this.renderHeader(),
+          this.renderActivities()
+        );
+      }
     }
   }]);
 
@@ -31077,6 +31065,79 @@ var RecentActivities = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = RecentActivities;
+
+/***/ }),
+/* 221 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(65);
+
+var _App = __webpack_require__(222);
+
+var _App2 = _interopRequireDefault(_App);
+
+var _reactRouterDom = __webpack_require__(71);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Root = function Root(_ref) {
+  var store = _ref.store;
+  return _react2.default.createElement(
+    _reactRedux.Provider,
+    { store: store },
+    _react2.default.createElement(
+      _reactRouterDom.HashRouter,
+      null,
+      _react2.default.createElement(_App2.default, null)
+    )
+  );
+};
+
+exports.default = Root;
+
+/***/ }),
+/* 222 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(71);
+
+var _recentActivitiesContainer = __webpack_require__(219);
+
+var _recentActivitiesContainer2 = _interopRequireDefault(_recentActivitiesContainer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var App = function App() {
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _recentActivitiesContainer2.default })
+  );
+};
+
+exports.default = App;
 
 /***/ })
 /******/ ]);

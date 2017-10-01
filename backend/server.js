@@ -1,7 +1,7 @@
 let path = require("path"),
   express = require("express");
 
-let DIST_DIR = path.join(__dirname),
+let DIST_DIR = path.join('../'),
   PORT = 3000,
   app = express();
 

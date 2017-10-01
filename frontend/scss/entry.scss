@@ -1,0 +1,42 @@
+@import 'reset.scss';
+
+.header-activity {
+  display: flex;
+  justify-content: space-between;
+  background-color: #61408F;
+  height: 43px;
+  align-items: center;
+  font-family: sans-serif;
+  padding: 0 20px 0 20px;
+
+  div {
+    color: white;
+
+    .fa {
+      font-weight: lighter
+    }
+  }
+}
+
+.recent-activity {
+    display: flex;
+    flex-direction: column;
+    .list-item {
+      display: flex;
+      border-bottom: solid .5px;
+      border-color: lightgray;
+      height: 92px;
+      div {
+        display: flex;
+        flex-direction: column;
+        font-family: sans-serif;
+      }
+      img {
+        height: 40px;
+        border: solid .5px;
+        border-color: lightgray;
+        border-radius: 25px;
+      }
+    }
+}
+
