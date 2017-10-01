@@ -17,3 +17,7 @@
 # Wireframe
 
 <img src="./images/final-result.png" width="400" />
+
+#### Extra Info
+
+- project was built using Chrome Developer tools using the iPhone 6 View
