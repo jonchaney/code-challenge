@@ -1,12 +1,12 @@
 # Code Challenge
 
-### For this Single Page Web App I used the following technologies to generate a given wireframe.
+## For this Single Page Web App I used the following technologies to generate a given wireframe.
 
-## - React/Redux
-## - Express
-## - Webpack
-## - Sass 
-## - Babel
+### - React/Redux
+### - Express
+### - Webpack
+### - Sass 
+### - Babel
 
 # Wireframe
 
