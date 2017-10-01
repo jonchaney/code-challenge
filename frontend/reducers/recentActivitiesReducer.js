@@ -15,15 +15,15 @@ const defaultState = {
     "authorAvatar": null
 };
 
-const AlbumsReducer = (state = defaultState, action) => {
+const RecentActivitiesReducer = (state = defaultState, action) => {
   Object.freeze(state);
   let newState = action.recentActivities;
   switch (action.type) {
     case RECEIVE_RECENT_ACTIVITIES:
-      return newState.data.recentActivities;
+      return newState.recentActivities;
     default:
       return state;
   }
 };
 
-export default AlbumsReducer;
+export default RecentActivitiesReducer;

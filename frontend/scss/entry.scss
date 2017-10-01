@@ -25,17 +25,31 @@
       display: flex;
       border-bottom: solid .5px;
       border-color: lightgray;
-      height: 92px;
-      div {
+      height: 77px;
+      padding: 10px 0 0 30px;
+      .post-info {
         display: flex;
         flex-direction: column;
         font-family: sans-serif;
+        div {
+          padding: 0 0 4px 0;
+          p {
+            font-size: 12px;
+          }
+          span {
+            color: gray;
+          }
+        }
+        .author-info {
+          flex-direction: row;
+        }
       }
       img {
         height: 40px;
         border: solid .5px;
         border-color: lightgray;
         border-radius: 25px;
+        margin-right: 17px;
       }
     }
 }

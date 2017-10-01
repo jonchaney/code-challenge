@@ -82,15 +82,25 @@ input[type="submit"] {
     display: flex;
     border-bottom: solid .5px;
     border-color: lightgray;
-    height: 92px; }
-    .recent-activity .list-item div {
+    height: 77px;
+    padding: 10px 0 0 30px; }
+    .recent-activity .list-item .post-info {
       display: flex;
       flex-direction: column;
       font-family: sans-serif; }
+      .recent-activity .list-item .post-info div {
+        padding: 0 0 4px 0; }
+        .recent-activity .list-item .post-info div p {
+          font-size: 12px; }
+        .recent-activity .list-item .post-info div span {
+          color: gray; }
+      .recent-activity .list-item .post-info .author-info {
+        flex-direction: row; }
     .recent-activity .list-item img {
       height: 40px;
       border: solid .5px;
       border-color: lightgray;
-      border-radius: 25px; }
+      border-radius: 25px;
+      margin-right: 17px; }
 
 /*# sourceMappingURL=bundle.css.map */

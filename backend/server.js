@@ -1,9 +1,9 @@
-let path = require("path"),
-  express = require("express");
+let path = require("path"), 
+    express = require("express");
 
 let DIST_DIR = path.join('../'),
-  PORT = 3000,
-  app = express();
+    PORT = 3000,
+    app = express();
 
 app.use(express.static(DIST_DIR));
 
@@ -12,5 +12,5 @@ app.get("*", function (req, res) {
 });
 
 app.listen(PORT, function () {
-  console.log('Example app listening on port 3000!');
+  console.log('Listening on port 3000');
  });

@@ -3139,7 +3139,7 @@ module.exports = identity;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var recentActivities = exports.recentActivities = __webpack_require__(182);
+var recentActivities = exports.recentActivities = __webpack_require__(182).data;
 
 /***/ }),
 /* 65 */
@@ -25106,7 +25106,7 @@ var defaultState = {
   "authorAvatar": null
 };
 
-var AlbumsReducer = function AlbumsReducer() {
+var RecentActivitiesReducer = function RecentActivitiesReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState;
   var action = arguments[1];
 
@@ -25114,13 +25114,13 @@ var AlbumsReducer = function AlbumsReducer() {
   var newState = action.recentActivities;
   switch (action.type) {
     case _user_actions.RECEIVE_RECENT_ACTIVITIES:
-      return newState.data.recentActivities;
+      return newState.recentActivities;
     default:
       return state;
   }
 };
 
-exports.default = AlbumsReducer;
+exports.default = RecentActivitiesReducer;
 
 /***/ }),
 /* 114 */
@@ -30968,40 +30968,54 @@ var RecentActivities = function (_React$Component) {
     value: function renderActivities() {
       var _this2 = this;
 
-      var today = new Date(this.props.recentActivities[0].postDate);
-      var activites = this.props.recentActivities.map(function (item, idx) {
-        var phrase = _this2.selectPhrase(item.nodeTypeString);
-        var date = _this2.getTime(item.postDate, today);
+      var today = new Date(this.props.recentActivities[0].postDate),
+          activites = this.props.recentActivities.map(function (item, idx) {
+
+        var phrase = _this2.selectPhrase(item.nodeTypeString),
+            date = _this2.getTime(item.postDate, today);
 
         return _react2.default.createElement(
           "div",
-          { key: idx, className: "recent-activity" },
+          { className: "list-item", key: idx },
+          _react2.default.createElement("img", { className: "profile-photo", src: "./" + item.authorAvatar }),
           _react2.default.createElement(
             "div",
-            { className: "list-item" },
-            _react2.default.createElement("img", { className: "profile-photo", src: "./" + item.authorAvatar }),
+            { className: "post-info" },
             _react2.default.createElement(
               "div",
               null,
               _react2.default.createElement(
                 "p",
                 null,
-                item.author
-              ),
+                item.author,
+                " ",
+                _react2.default.createElement(
+                  "span",
+                  null,
+                  phrase
+                )
+              )
+            ),
+            _react2.default.createElement(
+              "div",
+              null,
               _react2.default.createElement(
-                "p",
-                null,
-                phrase
-              ),
-              _react2.default.createElement(
-                "p",
+                "div",
                 null,
                 item.title
-              ),
+              )
+            ),
+            _react2.default.createElement(
+              "div",
+              null,
               _react2.default.createElement(
                 "p",
                 null,
-                date
+                _react2.default.createElement(
+                  "span",
+                  null,
+                  date
+                )
               )
             )
           )
@@ -31010,7 +31024,7 @@ var RecentActivities = function (_React$Component) {
 
       return _react2.default.createElement(
         "div",
-        null,
+        { className: "recent-activity" },
         activites
       );
     }
@@ -31030,13 +31044,11 @@ var RecentActivities = function (_React$Component) {
   }, {
     key: "getTime",
     value: function getTime(postDate, today) {
-      var diff = today - postDate;
-      var date = new Date(diff);
+      var diff = today - postDate,
+          date = new Date(diff);
 
       if (diff === 0) {
-        console.log(today.getMinutes());
-        // console.log(.getMinutes());
-        return "hi";
+        return "4 minutes ago";
       }
 
       return date.getDate() + " days ago";
@@ -31114,7 +31126,7 @@ exports.default = Root;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _react = __webpack_require__(0);
@@ -31130,11 +31142,7 @@ var _recentActivitiesContainer2 = _interopRequireDefault(_recentActivitiesContai
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
-  return _react2.default.createElement(
-    'div',
-    null,
-    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _recentActivitiesContainer2.default })
-  );
+    return _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _recentActivitiesContainer2.default });
 };
 
 exports.default = App;

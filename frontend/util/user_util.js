@@ -1,2 +1,2 @@
-export const recentActivities = require('../../backend/activity.json');
+export const recentActivities = require('../../backend/activity.json').data;
 
