@@ -8,6 +8,12 @@
 ### - Sass 
 ### - Babel
 
+#### To run:
+
+- run node server.js in /backend
+- run webpack watch in root
+- run sass --watch ./frontend/scss/entry.scss:./frontend/bundle.css
+
 # Wireframe
 
 <img src="./images/final-result.png" width="400" />
