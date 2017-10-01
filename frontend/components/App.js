@@ -1,11 +1,11 @@
 import React from 'react';
 import {Route} from 'react-router-dom';
 
-import recentActivitiesContainer from "./recentActivities/recentActivitiesContainer";
+import RecentActivitiesContainer from "./recentActivities/recentActivitiesContainer";
 
 const App = () => (
   <div>
-    <Route exact path="/" component={recentActivitiesContainer} />
+    <Route exact path="/" component={RecentActivitiesContainer} />
   </div>
 );
 

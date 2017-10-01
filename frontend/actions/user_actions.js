@@ -7,9 +7,8 @@ export const receiveRecentActivity = recentActivities => ({
   recentActivities
 });
 
-export const fetchRecentActivity = () => dispatch => {
-  return APIUtil.fetchRecentActivity().then(recentActivities => {
+export const fetchRecentActivities = () => dispatch => {
+  return APIUtil.fetchRecentActivities().then(recentActivities => {
     dispatch(receiveRecentActivity(recentActivities));
-    console.log('test');
   });
 };
