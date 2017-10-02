@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class RecentActivities extends React.Component {
   constructor(props) {
     super(props);
-    
   }
 
   componentWillMount() {
@@ -25,22 +24,22 @@ class RecentActivities extends React.Component {
         activites = this.props.recentActivities.map((item, idx) => {
 
           let phrase = this.selectPhrase(item.nodeTypeString),
-              date = this.getTime(item.postDate, today);
-
+            date = this.getTime(item.postDate, today);
+            
           return (
-              <div className="list-item" key={idx}>
-                  <img className="profile-photo" src={`./${item.authorAvatar}`} />
-                  <div className="post-info">
-                    <div>
-                      <p>{item.author} <span>{phrase}</span></p>
-                    </div>
-                    <div>
-                      <div>{item.title}</div>
-                    </div>
-                    <div>
-                      <p><span>{date}</span></p>
-                    </div>
+            <div className="list-item" key={idx}>
+                <img className="profile-photo" src={`./${item.authorAvatar}`} />
+                <div className="post-info">
+                  <div>
+                    <p>{item.author} <span>{phrase}</span></p>
                   </div>
+                  <div>
+                    <div>{item.title}</div>
+                  </div>
+                  <div>
+                    <p><span>{date}</span></p>
+                  </div>
+                </div>
               </div>
             );
           });

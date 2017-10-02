@@ -1642,16 +1642,12 @@ var _user_util = __webpack_require__(65);
 
 var RECEIVE_RECENT_ACTIVITIES = exports.RECEIVE_RECENT_ACTIVITIES = "RECEIVE_RECENT_ACTIVITIES";
 
-// actions creators
-
 var receiveRecentActivity = exports.receiveRecentActivity = function receiveRecentActivity(recentActivities) {
   return {
     type: RECEIVE_RECENT_ACTIVITIES,
     recentActivities: recentActivities
   };
 };
-
-// thunk action creators
 
 var fetchRecentActivities = exports.fetchRecentActivities = function fetchRecentActivities() {
   return function (dispatch) {
@@ -4290,16 +4286,10 @@ var _root = __webpack_require__(183);
 
 var _root2 = _interopRequireDefault(_root);
 
-var _user_actions = __webpack_require__(33);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 document.addEventListener('DOMContentLoaded', function () {
   var store = (0, _store2.default)();
-
-  window.fetchRecentActivities = _user_actions.fetchRecentActivities;
-  window.dispatch = store.dispatch;
-
   var root = document.getElementById('root');
   _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
 });

@@ -13,7 +13,7 @@ const defaultState = {
     "author": null,
     "authorId": null,
     "authorAvatar": null
-};
+  };
 
 const RecentActivitiesReducer = (state = defaultState, action) => {
   Object.freeze(state);
